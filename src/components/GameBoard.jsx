@@ -8,6 +8,8 @@ const initialGameBoard = [
 
 export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
   const [ gameBoard, setGameBoard ] = useState(initialGameBoard);
+  console.log('GameBoard() render, activePlayerSymbol: ', activePlayerSymbol);
+  
 
   function handleSelectSquare(rowIndex, colIndex) {
     setGameBoard((prevGameBoard) => {
@@ -15,7 +17,7 @@ export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
       let newGameBoard = JSON.parse(JSON.stringify(prevGameBoard));
 
       // Modify new state.
-      newGameBoard[rowIndex][colIndex] = activePlayerSymbol;
+      newGameBoard[rowIndex][colIndex] = activePlayerSymbol;      
 
       return newGameBoard;
     });
@@ -30,7 +32,9 @@ export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
           <ol>
             {row.map((playerSymbol, colIndex) => (
               <li key={colIndex}>
-                <button onClick={() => { handleSelectSquare(rowIndex, colIndex); }}>{playerSymbol}</button>
+                <button onClick={() => { handleSelectSquare(rowIndex, colIndex); }}>
+                  {playerSymbol}
+                </button>
               </li>
             ))}
           </ol>
